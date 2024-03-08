@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 전체 컨텐츠를 가운데 정렬 시키고 컨텐츠는 960 사이즈로 고정  */
+        #wrapper{
+            width:960px;
+            margin:0 auto;
+
+        }
+        .top-header{
+            width:960px;
+            height:130px;
+            background-color: aquamarine;
+            border-bottom:1px solid black;
+
+        }
+        .header-title{
+            font-size:40px;
+            color:white;
+            text-align: center;
+            line-height:120px;
+        }
+        .content{
+            float:left;
+            width:600px;
+            height: 400px;
+            padding:15px;
+            background-color: grey;
+        }
+        .right-area{
+            float:right;
+            width:300px;
+            height:400px;
+            padding :15px;
+            background-color: brown;
+        }
+
+        footer{
+            clear:both;
+            width:960px;
+            height:120px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id ="wrapper">
+
+        <!-- 상단 gnb메뉴영역 -->
+        <header class="top-header">
+            <h1 class="header-title"> 고정형 레이아웃 실습</h1>
+        </header>
+        <!-- 중간 좌측 본문 컨텐츠 영역 -->
+        <section class="content">
+            <h3> 본문내용영역</h3>
+        </section>
+        <!-- 중간우측 메뉴/광고영역 -->
+        <aside class ="right-area">
+            <h3> 우측메뉴-광고영역</h3>
+        </aside>
+        <!-- 하단 푸터 영역 -->
+        <footer>
+            <h3> 하단 풋터 영역</h3>
+        </footer>
+    </div>
+</body>
+</html>

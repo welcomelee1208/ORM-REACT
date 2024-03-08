@@ -1,0 +1,24 @@
+body{
+    background-color: rgb(69, 247, 209);
+}
+table{
+    color: rgb(3, 0, 0); 
+    top:50%; 
+    left:50%; 
+    position:absolute; 
+    margin-top:-260px; 
+    margin-left:-274px;
+    border: 5px solid rgb(191, 45, 45); 
+    border-collapse: collapse;
+}
+td{
+    padding: 24px; 
+    text-align: center
+}
+th{
+    font-size: 2.5rem;
+}
+.bold{
+    font-weight: bold; 
+    font-size: 28px
+}

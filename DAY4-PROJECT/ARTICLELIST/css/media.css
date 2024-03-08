@@ -1,0 +1,77 @@
+/* 현재 해상도 가로폭이 1000px 미만인 경우 해당스타일 적용 */
+@media(max-width:1000px){
+
+    .board-wrap{
+        width:100%;
+        min-width:320px;
+        padding:0 30px;
+        box-sizing: border-box;
+    }
+    /* 게시글 목록 특정 항목제거 및 width 비율 조정 */
+    .board-list .num,
+    .board-list .writer,
+    .board-list .count{
+        display:none;
+    }
+    .board-list .date{
+        width:40%;
+    }
+    .board-list .title{
+        text-indent:10px;
+    }
+    .board-list .top .title{
+    text-indent:0;
+    }
+    /* 페이저 사이즈 조정 */
+    .board-page a{
+        width:26px;
+        height:26px;
+    }
+    .board-page a .bt{
+        padding-top:7px;
+    }
+    .board-page a .num{
+        padding-top:6px;
+    }
+    /* 게시글 등록및 수정 화면의 라벨텍스트 제거하기 */
+
+    .board-write .info dl{
+        width:49%;
+    }
+    .board-write .info dl:first-child{
+        margin-right: 2%;
+
+    }
+    .board-write .title dt,
+    .board-write .info dt{
+        display:none;
+
+    }
+    .board-write.title dd,
+    .board-write .info dd{
+        width:100%;
+
+    }
+
+    .board-write .title input[type="text"],
+    .board-write .info input[type="text"],
+    .board-write .info input[type="password"]{
+        width:100%;
+    }
+    /* 상세보기 페이지 특정항목 재정렬 하기 */
+    .board-virw.info dl{
+        width:50px;
+        padding:0;
+    }
+    .board-view .info dl:nth-child(-n+2){
+        margin-bottom:5px;
+    }
+    .board-view .info dl::before{
+        display:none;
+    }
+    .board-view .info dl dt,
+    .board-view .info .dl dd{
+        font-size:1.2rem;
+    }
+
+}    

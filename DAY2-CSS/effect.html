@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        p{
+            border-radius: 100px;
+            width:200px;
+            height:200px;
+            background-image: url(./code.jpg);
+        }
+        .liner{
+            background: red;
+            background: linear-gradient(red,yellow);
+            height:100px;
+        }
+        .box{
+            width:200px;
+            height:300px;
+            box-shadow: 10px 10px 5px grey;
+        }
+        .text{
+            text-shadow: 4px 4px 3px black;
+            color:white;
+        }
+        #translate{
+            transform:translate(20px,100px);
+        }
+        #rotate{
+            transform:rotate(66deg);
+            width:200px;
+            height:100px;
+            border:1px solid;
+        }
+    </style>
+</head>
+<body>
+    <h1> 배경이미지 둥글게 표시하기</h1>
+    <p> 배경 이미지 처리</p>
+
+    <h1> 그라데이션 효과주기- 선형그라데이션 효과</h1>
+    <div class ="liner">뚜비두바 뚜비두바 뚜삐두바 ?</div>
+
+    <h1> 그림자 효과주기</h1>
+    <div class="box">그림자효과(box-shadow)</div>
+
+    <h1 class ="text">텍스트 그림자 효과주기</h1>
+
+    <h1> 요소 위치변ㅇ경및 기울기 처리</h1>
+    <div id ="translate">hellowworld</div>
+    <div id ="rotate">hellowworld</div>
+</body>
+</html>

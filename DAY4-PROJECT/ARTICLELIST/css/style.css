@@ -1,0 +1,281 @@
+/* 모든웹페이지 공통스타일 영역 */
+/* 모든 웹페이지에있는 모든 html 요소의 기본마진 패딩값을 0으로 초기화함. */
+*{
+    margin:0;
+    padding:0;
+}
+
+html{
+    font-size:10px;
+
+}
+ul,li{
+    list-style:none;
+}
+/* inherit:해당 요소를 감싸고 있는 부모요소의 color값을 그대로 상속받아 사용한다. */
+a{
+    text-decoration:none ;
+    color:inherit;
+}
+.board-wrap{
+    width:1000px;
+    margin:100px auto;
+
+}
+/* 각각의 웹페이지 제목표시영역 스타일 정의 */
+.board-title{
+    margin-bottom:30px;
+
+}
+.board-title strong{
+    font-size:3rem ;
+}
+.board-title p{
+    margin-top: 5px;
+    font-size: 1.4rem ;
+}
+/* 공통 버튼 스타일 정의 */
+.bt-wrap{
+    margin-top: 30px;
+    text-align: center;
+    font-size:0;
+}
+.bt-wrap a{
+    display:inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding:10px;
+    border:1px solid #000;
+    border-radius:2px;
+    font-size:1.4rem;
+
+}
+.bt-wrap a :first-child{
+    margin-left: 0;
+}
+.bt-wrap a.on{
+    background:#000;
+    color:#fff;
+}
+/* 목록 웹페이지 스타일정의영역 */
+/* 게시글 목록 전체 표시영역 기본스타일 적용 */
+.board-list-wrap{
+
+}
+.board-list{
+    width:100%;
+    border-top: 2px solid black ;
+
+}
+.board-list>div{
+    border-bottom:1px solid white;
+    font-size:0;
+
+    
+}
+.board-list>div.top{
+    border-bottom:1px solid #999;
+    
+}
+.board-list >div:last-child{
+    border-bottom:1px solid black;
+}
+.board-list > div > div{
+    display:inline-block;
+    padding:15px 0;
+    text-align: center;
+    font-size: 1.4rem;
+}
+.board-list >div.top> div{
+    font-weight: 600;
+}
+/*  캡션 영역 요소에 대한 가로폭 비율 스타일 지정 */
+.board-list .num{
+    width:10%;
+}
+.board-list .title{
+    width:60%;
+    text-align: left;
+
+}
+
+.board-list .top .title{
+    text-align: center;
+}
+
+.board-list .writer{
+    width:10%;
+}
+.board-list .date{
+    width:10%;
+}
+.board-list .count{
+    width:10%;
+}
+/* 공지게시글 목록 페이저영역 스타일 정의 */
+.board-page {
+    margin-top:30px;
+    text-align: center;
+    font-size: 0;
+
+}
+.board-page a{
+    display:inline-block;
+    width:32px;
+    height:32px;
+    box-sizing:border-box;
+    vertical-align:middle;
+    border:1px solid #ddd;
+    border-left:0;
+    line-height:100%;
+
+}
+.board-page a.num{
+    padding-top:9px;
+    font-size:1.4rem;
+}
+.board-page a.num.on{
+    border-color:#000;
+    background:#000;
+    color:#fff;
+}
+.board-page a.bt{
+    padding-top:15px;
+    font-size:1.2rem;
+    letter-spacing: -1px;
+}
+.board-page a:first-child{
+    border-left:1px solid #ddd;
+}
+
+/* 공지글 신규 등록 웹페이지 스타일 영역 */
+
+.board-write-wrap{
+
+}
+.board-write{
+    border-top:2px solid #000;
+}
+.board-write .title,
+.borad-write .info{
+    padding:15px;
+
+}
+
+.board-write .info{
+    border-top: 1px dashed #ddd;
+    border-bottom:1px solid #000;
+    font-size:0;
+}
+
+.board-write .title dl{
+    font-size:0
+}
+.board-write .info dl{
+    display:inline-block;
+    width:50%;
+    vertical-align: middle;
+}
+.board-write .title dt,
+.board-write .title dd,
+.board-write .info dt,
+.board-write .info dd{
+    display:inline-block;
+    vertical-align: middle;
+    font-size:1.4rem;   
+}
+.board-write .title dt,
+.board-write .info dt{
+    width:100px;
+}
+.board-write .title dd{
+    width: calc(100%-100px);
+}
+.board-write .title input[type="text"],
+.board-write .info input[type="text"],
+.board-write .info input[type="password"]{
+    padding:10px;
+    box-sizing:border-box;
+}
+.board-write .title input[type="text"]{
+    width:80%;
+}
+.board-write .cont{
+    border-bottom:1px solid #000;
+}
+.board-write .cont textarea{
+    display:block;
+    width:100%;
+    height:300px;
+    padding: 15px;
+    box-sizing:border-box;
+    border:0;
+    resize: vertical;
+
+
+}
+
+
+
+/* 공지글 보기 웹페이지 스타일 영역 */
+
+.board-view-wrap{
+
+}
+
+.board-view{
+    width:100%;
+    border-top:2px solid #000;
+
+}
+.board-view .title{
+    padding:20px 15px;
+    border-bottom:1px dashed #ddd;
+    font-size: 2rem;
+}
+.board-view .info{
+    padding:15px;
+    border-bottom:1px solid #999;
+    font-size:0;
+
+}
+.board-view .info dl{
+    position:relative;
+    display:inline-block;
+    padding:0 20px;
+}
+.board-view .info dl:first-child{
+    padding-left:0;
+}
+.board-view .info dl::before{
+    content:"";
+    position: absolute;
+    top:1px;
+    left:0;
+    display:block;
+    width:1px;
+    height:13px;
+    background:#ddd;
+
+}
+.board-view .info dl:first-child::before{
+    display:none;
+    
+}
+.board-view .info dl dt,
+.board-view .info dl dd{
+    display:inline-block;
+    font-size:1.4rem;
+}
+.board-view .info dl dd{
+    margin-left: 10px ;
+    color:#777;
+
+}
+.board-view .cont{
+    padding:15px;
+    border-bottom:1px, solid #000;
+    line-height:160%;
+    font-size:1.4rem;
+}
+/* 공지글 수정웹페이지 영역 */
