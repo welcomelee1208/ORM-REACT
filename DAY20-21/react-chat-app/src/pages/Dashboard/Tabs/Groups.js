@@ -1,22 +1,40 @@
 import React, { useState } from 'react'
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    UncontrolledTooltip,
+    Form,
+    Label,
+    Input,
+    Collapse,
+    CardHeader,
+    CardBody,
+    Alert,
+    InputGroup,
+    Card,
+    Badge,
+} from 'reactstrap'
+
 import { Link } from 'react-router-dom'
 
-//carousel
-//yarn add react-alice-carousel;
-import AliceCarousel from 'react-alice-carousel'
-import 'react-alice-carousel/lib/alice-carousel.css'
+//simple bar
+import SimpleBar from 'simplebar-react'
+
+//components
+//import SelectContact from "../../../components/SelectContact";
 
 //Import Images
-
 import avatar2 from '../../../assets/images/users/avatar-2.jpg'
 import avatar4 from '../../../assets/images/users/avatar-4.jpg'
 import avatar3 from '../../../assets/images/users/avatar-3.jpg'
 import avatar6 from '../../../assets/images/users/avatar-6.jpg'
 import avatar7 from '../../../assets/images/users/avatar-7.jpg'
 import avatar8 from '../../../assets/images/users/avatar-8.jpg'
-import avatar5 from '../../../assets/images/users/avatar-8.jpg'
 
-const OnlineUsers = () => {
+const Groups = () => {
     const [config, setConfig] = useState({
         modal: false,
         isOpenCollapse: false,
@@ -277,80 +295,154 @@ const OnlineUsers = () => {
         groupDesc: '',
     })
 
-    const responsive = {
-        0: { items: 4 },
-        1024: { items: 4 },
+    const toggle = () => {
+        setConfig({ ...config, modal: !config.modal })
     }
 
     return (
         <React.Fragment>
-            {/* Start user status */}
-            <div className="px-4 pb-4 dot_remove" dir="ltr">
-                <AliceCarousel
-                    responsive={responsive}
-                    disableDotsControls={false}
-                    disableButtonsControls={false}
-                    mouseTracking
-                >
-                    <div className="item">
-                        <Link to="#" className="user-status-box">
-                            <div className="avatar-xs mx-auto d-block chat-user-img online">
-                                <img src={avatar2} alt="user-img" className="img-fluid rounded-circle" />
-                                <span className="user-status"></span>
-                            </div>
-
-                            <h5 className="font-size-13 text-truncate mt-3 mb-1">Patrick</h5>
-                        </Link>
+            <div>
+                <div className="p-4">
+                    <div className="user-chat-nav float-end">
+                        <div id="create-group">
+                            {/* Button trigger modal */}
+                            <Button
+                                type="button"
+                                color="link"
+                                onClick={toggle}
+                                className="text-decoration-none text-muted font-size-18 py-0"
+                            >
+                                <i className="ri-group-line me-1"></i>
+                            </Button>
+                        </div>
+                        <UncontrolledTooltip target="create-group" placement="bottom">
+                            Create group
+                        </UncontrolledTooltip>
                     </div>
-                    <div className="item">
-                        <Link to="#" className="user-status-box">
-                            <div className="avatar-xs mx-auto d-block chat-user-img online">
-                                <img src={avatar4} alt="user-img" className="img-fluid rounded-circle" />
-                                <span className="user-status"></span>
-                            </div>
+                    <h4 className="mb-4">Groups</h4>
 
-                            <h5 className="font-size-13 text-truncate mt-3 mb-1">Doris</h5>
-                        </Link>
+                    {/* Start add group Modal */}
+                    <Modal isOpen={config.modal} centered toggle={toggle}>
+                        <ModalHeader tag="h5" className="modal-title font-size-14" toggle={toggle}>
+                            Create New Group
+                        </ModalHeader>
+                        <ModalBody className="p-4">
+                            <Form>
+                                <div className="mb-4">
+                                    <Label className="form-label" htmlFor="addgroupname-input">
+                                        Group Name
+                                    </Label>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        id="addgroupname-input"
+                                        placeholder="Enter Group Name"
+                                        value={config.groupName}
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <Label className="form-label">Group Members</Label>
+                                    <Alert isOpen={false} color="danger">
+                                        메시지
+                                    </Alert>
+                                    <div className="mb-3">
+                                        <Button color="light" size="sm" type="button">
+                                            Select Members
+                                        </Button>
+                                    </div>
+
+                                    <Collapse isOpen={false} id="groupmembercollapse">
+                                        <Card className="border">
+                                            <CardHeader>
+                                                <h5 className="font-size-15 mb-0">Contacts</h5>
+                                            </CardHeader>
+                                            <CardBody className="p-2">
+                                                <SimpleBar style={{ maxHeight: '150px' }}>
+                                                    {/* contacts */}
+                                                    {/* <div id="addContacts">
+                            <SelectContact />
+                          </div> */}
+                                                </SimpleBar>
+                                            </CardBody>
+                                        </Card>
+                                    </Collapse>
+                                </div>
+                                <div>
+                                    <Label className="form-label" htmlFor="addgroupdescription-input">
+                                        Description
+                                    </Label>
+                                    <textarea
+                                        className="form-control"
+                                        id="addgroupdescription-input"
+                                        rows="3"
+                                        value={config.groupDesc}
+                                        placeholder="Enter Description"
+                                    ></textarea>
+                                </div>
+                            </Form>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button type="button" color="link">
+                                Close
+                            </Button>
+                            <Button type="button" color="primary">
+                                Create Group
+                            </Button>
+                        </ModalFooter>
+                    </Modal>
+                    {/* End add group Modal */}
+
+                    <div className="search-box chat-search-box">
+                        <InputGroup size="lg" className="bg-light rounded-lg">
+                            <Button color="link" className="text-decoration-none text-muted pr-1" type="button">
+                                <i className="ri-search-line search-icon font-size-18"></i>
+                            </Button>
+                            <Input type="text" className="form-control bg-light" placeholder="Search groups..." />
+                        </InputGroup>
                     </div>
+                    {/* end search-box */}
+                </div>
 
-                    <div className="item">
-                        <Link to="#" className="user-status-box">
-                            <div className="avatar-xs mx-auto d-block chat-user-img online">
-                                <img src={avatar5} alt="user-img" className="img-fluid rounded-circle" />
-                                <span className="user-status"></span>
-                            </div>
+                {/* Start chat-group-list */}
+                <SimpleBar style={{ maxHeight: '100%' }} className="p-4 chat-message-list chat-group-list">
+                    <ul className="list-unstyled chat-list">
+                        {config.groups.map((group, key) => (
+                            <li key={key}>
+                                <Link to="#">
+                                    <div className="d-flex align-items-center">
+                                        <div className="chat-user-img me-3 ms-0">
+                                            <div className="avatar-xs">
+                                                <span className="avatar-title rounded-circle bg-primary-subtle text-primary">
+                                                    {group.name.charAt(1)}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="flex-grow-1 overflow-hidden">
+                                            <h5 className="text-truncate font-size-14 mb-0">
+                                                {group.name}
+                                                {group.unRead !== 0 ? (
+                                                    <Badge color="none" pill className="badge-soft-danger float-end">
+                                                        {group.unRead >= 20 ? group.unRead + '+' : group.unRead}
+                                                    </Badge>
+                                                ) : null}
 
-                            <h5 className="font-size-13 text-truncate mt-3 mb-1">Emily</h5>
-                        </Link>
-                    </div>
-
-                    <div className="item">
-                        <Link to="#" className="user-status-box">
-                            <div className="avatar-xs mx-auto d-block chat-user-img online">
-                                <img src={avatar6} alt="user-img" className="img-fluid rounded-circle" />
-                                <span className="user-status"></span>
-                            </div>
-
-                            <h5 className="font-size-13 text-truncate mt-3 mb-1">Steve</h5>
-                        </Link>
-                    </div>
-
-                    <div className="item">
-                        <Link to="#" className="user-status-box">
-                            <div className="avatar-xs mx-auto d-block chat-user-img online">
-                                <span className="avatar-title rounded-circle bg-primary-subtle text-primary">T</span>
-                                <span className="user-status"></span>
-                            </div>
-
-                            <h5 className="font-size-13 text-truncate mt-3 mb-1">Teresa</h5>
-                        </Link>
-                    </div>
-                </AliceCarousel>
-                {/* end user status carousel */}
+                                                {group.isNew && (
+                                                    <Badge color="none" pill className="badge-soft-danger float-end">
+                                                        New
+                                                    </Badge>
+                                                )}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </SimpleBar>
+                {/* End chat-group-list */}
             </div>
-            {/* end user status  */}
         </React.Fragment>
     )
 }
 
-export default OnlineUsers
+export default Groups
