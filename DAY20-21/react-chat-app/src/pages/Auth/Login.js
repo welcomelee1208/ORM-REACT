@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useCallback, useEffect } from "react";
+
+//reactstrap은 bootstrap을 react에서 더 쉽게 사용하기 위한 부트스트랩 지원 리액트 패키지
 import {
   Container,
   Row,
@@ -8,76 +8,55 @@ import {
   Card,
   CardBody,
   FormGroup,
+  Alert,
   Form,
   Input,
   Button,
   FormFeedback,
   Label,
   InputGroup,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
 } from "reactstrap";
-import { useDispatch } from "react-redux";
-import { userLogin } from "../../redux/auth/action";
 
+import { Link, useNavigate } from "react-router-dom";
+
+//formik은 리액트에서 form을 다루는 코드들을 쉽게 작성할 수 있도록 도와주는 패키지
 import { useFormik } from "formik";
+
+//폼의 유효성을 검사하는 yup 패키지 참조
 import * as Yup from "yup";
+
 //Import Images
 import logodark from "../../assets/images/logo-dark.png";
 import logolight from "../../assets/images/logo-light.png";
 
 const Login = (props) => {
-  const globalDisptch = useDispatch();
   const navigate = useNavigate();
-  const [modal, setModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
 
+  //폼 유효성검사 및 폼데이터처리
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: "admin@themesbrand.com",
+      password: "123456",
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Username"),
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: (values) => {
-      LoginData(values);
-      navigate("/dashboard");
-    },
-  });
+      //props.loginUser(values.email, values.password, props.router.navigate);
 
-  const toggleModal = () => setModal(!modal);
+      //STEP1: axios 기반으로 백엔드와 연동하여 로그인처리한다.
+      //STEP2: 메일주소와 암호가 다른경우에 대한 예외처리 와 정상 로그인시 발급된 토큰값을 웹브라우저의 로컬스토리지에 저장한다.
+      //STEP3: 로그인한 사용자 토큰정보를 리덕스 전역상태영역에 저장갱신한다.
 
-  async function LoginData(values) {
-    try {
       var loginData = {
         email: values.email,
         password: values.password,
       };
-      const res = await axios.post(
-        "http://localhost:3005/api/member/login",
-        loginData
-      );
-      console.log("로그인 결과", res.data);
-      window.localStorage.setItem("jwttoken", res.data.data.token);
+    },
+  });
 
-      if (res.data.code === "200") {
-        // 로컬 스토리지 공간에 jwt 토큰값 보관
-        globalDisptch(userLogin(res.data.data.token, res.data.data.loginUser));
-        navigate("/dashboard");
-      } else {
-        setModalMessage(res.data.result);
-        toggleModal();
-        // navigate('/login') // 로그인 실패 시에도 navigate('/login')을 실행하면 무한 루프에 빠질 수 있습니다.
-      }
-    } catch (err) {
-      console.log("에러발생");
-    }
-  }
-  document.title = "Login | Chatvia React - Responsive Bootstrap 5 Chat App";
+  document.title = "로그인 페이지";
 
   return (
     <React.Fragment>
@@ -103,12 +82,13 @@ const Login = (props) => {
 
                 <h4>Sign in</h4>
                 <p className="text-muted mb-4">
-                  ign in to continue to Chatvia.
+                  Sign in to continue to Chatvia.
                 </p>
               </div>
 
               <Card>
                 <CardBody className="p-4">
+                  {props.error && <Alert color="danger">{props.error}</Alert>}
                   <div className="p-3">
                     <Form onSubmit={formik.handleSubmit}>
                       <div className="mb-3">
@@ -149,7 +129,7 @@ const Login = (props) => {
                             to="/forget-password"
                             className="text-muted font-size-13"
                           >
-                            Forgot password
+                            Forgot password?
                           </Link>
                         </div>
                         <Label className="form-label">Password</Label>
@@ -190,7 +170,7 @@ const Login = (props) => {
                           className="form-check-label"
                           htmlFor="remember-check"
                         >
-                          Remember me
+                          Remember me?
                         </Label>
                       </div>
 
@@ -211,33 +191,23 @@ const Login = (props) => {
 
               <div className="mt-5 text-center">
                 <p>
-                  Don't have an account ?
+                  Don't have an account?{" "}
                   <Link
                     to="/register"
                     className="font-weight-medium text-primary"
                   >
-                    Signup now
-                  </Link>
+                    Signup now{" "}
+                  </Link>{" "}
                 </p>
                 <p>
-                  © {new Date().getFullYear()} Chatvia. Crafted with
-                  <i className="mdi mdi-heart text-danger"></i>
-                  by Themesbrand
+                  © {new Date().getFullYear()} Chatvia.Crafted with{" "}
+                  <i className="mdi mdi-heart text-danger"></i> by Themesbrand
                 </p>
               </div>
             </Col>
           </Row>
         </Container>
       </div>
-      <Modal isOpen={modal} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>Login</ModalHeader>
-        <ModalBody>{modalMessage}</ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggleModal}>
-            확인
-          </Button>
-        </ModalFooter>
-      </Modal>
     </React.Fragment>
   );
 };

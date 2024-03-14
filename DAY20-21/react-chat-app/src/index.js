@@ -3,9 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
+
 import { BrowserRouter } from "react-router-dom";
+
+//프로바이더 객체 추가
+import { Provider } from "react-redux";
+
+//스토어 객체 참조하기
 import store from "./redux/store";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
