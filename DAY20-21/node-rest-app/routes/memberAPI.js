@@ -36,7 +36,7 @@ router.post("/entry", async (req, res) => {
       email,
       member_password: encryptedPassword,
       name,
-      profile_img_path: "",
+      profile_img_path: "http://localhost:3005/profile/1.jpg",
       telephone: "",
       entry_type_code: 0,
       use_state_code: 1,
@@ -115,8 +115,7 @@ router.post("/login", async (req, res) => {
           issuer: "modulab",
         });
 
-        tokenJsonData.profile_img_path =
-          "http://localhost:3005/profile/eddy.png";
+        tokenJsonData.profile_img_path = "http://localhost:3005/profile/1.jpg";
 
         //STEP5: 생성된 JWT 사용자 인증토큰을 브라우저로 전달합니다.
         apiResult.code = "200";
