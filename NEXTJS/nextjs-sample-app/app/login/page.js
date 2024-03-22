@@ -104,11 +104,13 @@ export default function Example() {
               Regist
             </a>
           </p>
-          <Link href="/">
-            <a className="text-indigo-600 hover:text-indigo-700 mt-8 inline-block">
-              &larr; Back to Main
-            </a>
-          </Link>
+
+          <a
+            className="text-indigo-600 hover:text-indigo-700 mt-8 inline-block"
+            href="/"
+          >
+            &larr; Back to Main
+          </a>
         </div>
       </div>
     </>
