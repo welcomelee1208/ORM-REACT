@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 
@@ -47,7 +47,47 @@ const navigation = [
   { name: "Blog", href: "/blogs" },
 ];
 
-export default function Example() {
+export default function Blog() {
+  const [post, setPost] = useState([
+    {
+      article_id: 2,
+      title: "넥스트",
+      contents: "오늘은 넥스트와 타일",
+      view_count: 100,
+      reg_member_id: 100,
+      edit_date: "2024-03-25",
+    },
+    // More posts...
+  ]);
+
+  useEffect(() => {
+    const fetchData = () => {
+      fetch(`http://localhost:3005/api/articles`, {
+        method: "GET",
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((result) => {
+          console.log("처리결과 데이터:", result.data);
+
+          if (result.code === "200") {
+            //성공시 article바인딩 데이터 조회해온 데이터로 업데이트
+            setPost(result.data);
+          }
+        })
+        .catch((error) => {
+          // handle the error as needed
+          console.error("An error occurred while fetching the data: ", error);
+        });
+    };
+
+    fetchData();
+  }, []);
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (

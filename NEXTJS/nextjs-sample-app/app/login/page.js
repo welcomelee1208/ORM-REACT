@@ -1,19 +1,12 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+"use client";
 import Link from "next/link"; // 추가
+import { postLoginFetcher } from "../api/authAPI";
+import { useEffect, useState } from "react";
 export default function Example() {
+  const [member, setMember] = useState({});
+  useEffect(() => {
+    postLoginFetcher(`http://localhost:3005/api/member/login`, member);
+  });
   return (
     <>
       {/*
